@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Funkcija za dobijanje svih slika iz foldera gallery
+// U stvarnom projektu, ovo bi moglo biti implementirano kroz Git ili neki drugi sistem
+const galleryImages = [
+  {
+    src: "/gallery/sebet-panorama-1.jpg",
+    alt: "Panorama sela Šebet",
+    title: "Panoramski pogled na selo"
+  },
+  {
+    src: "/gallery/sebet-kuce-1.jpg",
+    alt: "Tradicionalne kuće u Šebetu",
+    title: "Tradicionalna arhitektura"
+  },
+  {
+    src: "/gallery/sebet-priroda-1.jpg",
+    alt: "Priroda oko sela",
+    title: "Planinska priroda"
+  },
+  {
+    src: "/gallery/sebet-ljudi-1.jpg",
+    alt: "Meštani sela",
+    title: "Život meštana"
+  },
+  {
+    src: "/gallery/sebet-tradicija-1.jpg",
+    alt: "Tradicionalni običaji",
+    title: "Očuvanje tradicije"
+  },
+  {
+    src: "/gallery/sebet-zima-1.jpg",
+    alt: "Šebet zimi",
+    title: "Zimski pejzaž"
+  }
+];
+---
+
+<Layout>
+	<h2>Galerija fotografija</h2>
+	
+	<p>
+		Dobrodošli u našu galeriju fotografija sela Šebet. Ovde možete videti raznovrsne 
+		fotografije koje prikazuju lepotu našeg sela, njegovu prirodu, arhitekturu, 
+		tradiciju i svakodnevni život meštana.
+	</p>
+	
+	<p>
+		Galerija se redovno ažurira novim fotografijama. Ako želite da doprinesete svojom 
+		fotografijom, možete je poslati putem Git-a u folder "gallery".
+	</p>
+
+	<div class="gallery-container">
+		<div class="gallery">
+			{galleryImages.map((image) => (
+				<div class="gallery-item">
+					<img src={image.src} alt={image.alt} />
+					<div class="gallery-caption">
+						<h4>{image.title}</h4>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+
+	<h3>Kako doprineti galeriji</h3>
+	<p>
+		Ako želite da dodate svoje fotografije u našu galeriju, možete to učiniti na sledeći način:
+	</p>
+	
+	<ol>
+		<li>Klonirajte Git repozitorijum sajta</li>
+		<li>Dodajte svoje fotografije u folder "public/gallery"</li>
+		<li>Imenujte fotografije na smislen način (npr. "sebet-priroda-[broj].jpg")</li>
+		<li>Pošaljite pull request sa vašim fotografijama</li>
+	</ol>
+	
+	<p>
+		Napomena: Fotografije bi trebalo da budu u vezi sa selom Šebet, njegovom istorijom, 
+		tradicijom, prirodom ili stanovnicima. Optimalna veličina fotografija je do 1MB.
+	</p>
+</Layout>
+
+<style>
+	.gallery-container {
+		margin: 2rem 0;
+	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.gallery-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 8px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover {
+		transform: translateY(-5px);
+	}
+
+	.gallery-item img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+		display: block;
+	}
+
+	.gallery-caption {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.7);
+		color: white;
+		padding: 0.5rem;
+		transform: translateY(100%);
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover .gallery-caption {
+		transform: translateY(0);
+	}
+
+	.gallery-caption h4 {
+		margin: 0;
+		font-size: 1rem;
+		color: white;
+		text-align: center;
+	}
+
+	ol, ul {
+		margin-left: 1.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	li {
+		margin-bottom: 0.5rem;
+	}
+</style>
